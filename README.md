@@ -1,12 +1,19 @@
 # MyProjects
 
-#E-commerce website
+## E-commerce website
+### About:
 I am currently taking part in developing an e-commerce web application as part of a university team project.As a member of the front-end team I can say I learned a lot by developing these web pages.
-Larning outcomes:
+
+### Learning outcomes:
 -responsive web design using bootstrap
 -html and css
 -a little javascriot
 -learning how to work in a team and respect deadlines
+
+### Screenshots:
+#### Single Product Page
+![image](https://user-images.githubusercontent.com/81852894/165872381-bb66f735-28e0-46ce-80fe-4c7a5de28d6c.png)
+
 
 
 #Guessing Game 

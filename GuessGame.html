@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuessGame</title>
+
+</head>
+
+<body>
+    <div id="container">
+        <h3>Guess a number between 1 and 100 </h3>
+        <p id="output">Enter your guess</p>
+        <input type="text" id="input"><button id="btn">Enter</button>
+        <br>
+        <br>
+        <textarea id="message" style="width: 14%;">
+        </textarea>
+        <table id="table" style="border: solid black 2px;">
+            <thead>
+                <tr>
+                    <th>Your guess</th>
+                </tr>
+            </thead>
+            <tbody id="row">
+            </tbody>
+        </table>
+    </div>
+    <script>
+        let btn = document.getElementById('btn');
+        let output = document.getElementById('outputText');
+        let message = document.getElementById('message');
+        let count = 1;
+        let x = Math.floor(Math.random() * 100 + 1);
+        var guess_list = [];
+
+    
+
+        btn.addEventListener('click', function () {
+            let guess = document.getElementById('input').value;
+            var table = document.getElementById('row');
+            var list = table.innerHTML;
+            list += guess + "<br>";
+            table.innerHTML = list;
+            guess_list.push(guess);
+            let data = {"guess_list": guess_list, "count": count, "random": x };
+            sessionStorage.setItem("data", JSON.stringify(data));
+
+            count++;
+            if (guess == x) {
+                message.style.color = "blue";
+                message.value = 'CONGRATULATIONS!!! You guessed the number in ' + count + ' tries'
+            } else if (guess < x) {
+                message.style.color = "red";
+                message.value = 'Your guess is wrong!! Guess a HIGHER number.';
+                if (Math.abs(x - guess) <= 5) {
+                    message.value = message.value + 'You are very close';
+                }
+            } else if (guess > x) {
+                message.style.color = "red";
+                message.value = 'Your guess is wrong!! Guess a LOWER number.';
+                if (Math.abs(x - guess) <= 5) {
+                    message.value = message.value + 'You are very close';
+                }
+            } 
+            if (count == 11) {
+                message.style.color = "red";
+                message.value = 'GAME OVER!! You could not guess the number'
+                document.getElementById('btn').disabled = true;
+            }
+        })
+
+        window.onunload = function () {
+            sessionStorage.clear();
+        }
+
+
+    </script>
+</body>
+
+</html>
